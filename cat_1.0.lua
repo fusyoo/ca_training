@@ -5,7 +5,7 @@ msgTimeOut = 60
 cleanupTime = 1800
 
 -- The time after air units will disappear
-airCleanup = 1200
+airCleanup = 1200 
 
 --        ZONES
 -- easy: no air defense, ROE = HOLD
@@ -60,6 +60,7 @@ f16c = SPAWN:New("F-16C"):InitCleanUp(airCleanup)
 mig29s = SPAWN:New("MiG-29S"):InitCleanUp(airCleanup)
 fa18c = SPAWN:New("F/A-18C"):InitCleanUp(airCleanup)
 su33 = SPAWN:New("Su-33"):InitCleanUp(airCleanup)
+tu95 = SPAWN:New("Tu-95"):InitCleanUp(airCleanup)
 
 --        Ship Templates
 
@@ -138,6 +139,7 @@ MENU_COALITION_COMMAND:New(coalition.side.BLUE,"F-16C",airSpawnMenu,spawnAirTarg
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"MiG-29S",airSpawnMenu,spawnAirTargets,mig29s)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"F/A-18C",airSpawnMenu,spawnAirTargets,fa18c)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"Su-33",airSpawnMenu,spawnAirTargets,su33)
+MENU_COALITION_COMMAND:New(coalition.side.BLUE,"Tu-95",airSpawnMenu,spawnAirTargets,tu95)
 
 -- Ship target menus
 
