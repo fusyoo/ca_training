@@ -7,6 +7,9 @@ cleanupTime = 1800
 -- The time after air units will disappear
 airCleanup = 1200 
 
+-- The time after tankers and awacs' will be respawned
+utilityRespawnTimer = 7200
+
 --        ZONES
 -- easy: no air defense, ROE = HOLD
 
@@ -61,6 +64,13 @@ mig29s = SPAWN:New("MiG-29S"):InitCleanUp(airCleanup)
 fa18c = SPAWN:New("F/A-18C"):InitCleanUp(airCleanup)
 su33 = SPAWN:New("Su-33"):InitCleanUp(airCleanup)
 tu95 = SPAWN:New("Tu-95"):InitCleanUp(airCleanup)
+mig19p = SPAWN:New("MiG-19P"):InitCleanUp(airCleanup)
+
+--        AIR UTILITY
+
+redAwacs = SPAWN:New("Red AWACS"):InitCleanUp(utilityRespawnTimer)
+blueAwacs = SPAWN:New("Blue AWACS"):InitCleanUp(utilityRespawnTimer)
+blueTanker = SPAWN:New("Blue KC135"):InitCleanUp(utilityRespawnTimer)
 
 --        Ship Templates
 
@@ -116,6 +126,19 @@ function spawnAirTargets(template)
   end
 end
 
+---- awacs &  tanker scheduler
+--
+--
+
+SCHEDULER:New(
+  nil,
+  function()
+    blueT = blueTanker:ReSpawn()
+    rAw = redAwacs:ReSpawn()
+    bAw = blueAwacs:ReSpawn()
+  end, {}, 1, utilityRespawnTimer
+):Start()
+
 -- Ground target menus
 
 spawnMenu = MENU_COALITION:New(coalition.side.BLUE,"Spawn")
@@ -134,6 +157,7 @@ MENU_COALITION_COMMAND:New(coalition.side.BLUE,"Hard: Mixed Targets",groundSpawn
 airSpawnMenu = MENU_COALITION:New(coalition.side.BLUE, "Air Targets", spawnMenu)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"F-86F",airSpawnMenu,spawnAirTargets,f86f)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"F-5E-3",airSpawnMenu,spawnAirTargets,f5e3)
+MENU_COALITION_COMMAND:New(coalition.side.BLUE,"MiG-19P",airSpawnMenu,spawnAirTargets,mig19p)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"MiG-21Bis",airSpawnMenu,spawnAirTargets,mig21bis)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"F-16C",airSpawnMenu,spawnAirTargets,f16c)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE,"MiG-29S",airSpawnMenu,spawnAirTargets,mig29s)
