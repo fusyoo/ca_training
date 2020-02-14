@@ -71,6 +71,7 @@ mig19p = SPAWN:New("MiG-19P"):InitCleanUp(airCleanup)
 redAwacs = SPAWN:New("Red AWACS"):InitCleanUp(utilityRespawnTimer)
 blueAwacs = SPAWN:New("Blue AWACS"):InitCleanUp(utilityRespawnTimer)
 blueTanker = SPAWN:New("Blue KC135"):InitCleanUp(utilityRespawnTimer)
+blueTankerMPRS = SPAWN:New("Blue KC135 MPRS"):InitCleanUp(utilityRespawnTimer)
 
 --        Ship Templates
 
@@ -134,6 +135,7 @@ SCHEDULER:New(
   nil,
   function()
     blueT = blueTanker:ReSpawn()
+    blueT2 = blueTankerMPRS:ReSpawn()
     rAw = redAwacs:ReSpawn()
     bAw = blueAwacs:ReSpawn()
   end, {}, 1, utilityRespawnTimer
