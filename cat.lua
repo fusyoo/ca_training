@@ -5,7 +5,7 @@ msgTimeOut = 60
 cleanupTime = 1800
 
 -- The time after air units will disappear
-airCleanup = 1200 
+airCleanup = 1200
 
 -- The time after tankers and awacs' will be respawned
 utilityRespawnTimer = 7200
